@@ -1,24 +1,26 @@
 import random
 import traceback
 import glog as log
-
+""" This version is with debug logging codes"""
 
 def get_function_name():
     return traceback.extract_stack(None, 2)[0][2]
 
 
 class biNode:
-    """ This is a class node with which a binary tree can be built.
-    The binary tree has the following properties:
+    """ This is a class node with which a binary search tree can be built.
+    The binary search tree has the following properties:
 
-    1. Binary tree can be built by inserting nodes or from a list
-    2. all nodes are placed with keys in an accending ("Inorder") order
-    3. Each node with at most two children nodes allowed
-    4. Binary tree can be converted to a list in an accending or deccending order
-    5. Any node can be removed from binary tree
-    6. Any subtree can be removed from binary tree
-    7. The entire tree can be removed in a postorder traversal order
-    8. The whole tree can be discarded recursively from the root node
+    1. Binary tree can be built by inserting nodes or its key, or
+        from a list of keys.
+    2. No duplicate key is allowed.
+    3. all nodes are placed with keys in an accending ("Inorder") order
+    4. Each node with at most two children nodes allowed
+    5. Binary tree can be converted to a list in an accending or deccending order
+    6. Any node can be removed from binary tree
+    7. Any subtree can be removed from binary tree
+    8. The entire tree can be removed in a postorder traversal order
+    9. The whole tree can be discarded recursively from the root till empty
 
     Errors that this module might return:
 
@@ -51,7 +53,10 @@ class biNode:
         return 0
         """
 
-        del self
+        # unreference the node and let Python performs
+        # garbage collection automatically
+        self = None
+
         biNode.count -= 1
         if biNode.count <= 0:
             # btree is empty
@@ -103,104 +108,67 @@ class biNode:
     Syntax:
         <obj>.remove_node(key)
         return:
-            0: remove successfully
+            node to remove if successfully
             -2: node/key not found
         """
 
-        """ Approach:
-        1. Find the target (ie, node to remove) recursively
-        2. Once target found successfully,
-            To replace target's spot with:
-                if the max-node of its left subtree exists
-                    replace target's key with max-node's key
-                    link the child to the right of max-node's parent
-                    free max-node
-                else if the min-node of its right subtee exists
-                    replace target's key with min-node's key
-                    link the child back to the left of min-node's parent
-                    free min-node
-                else the target has no child (ie, leaf node)
-                    free the target node found
-            Return 0
-        """
-
-        # 1. Find the target (ie, node to remove) recursively
+        # Base Case
         if key == self.key:
 
-            log.debug(
-                f'{get_function_name()}: target found: {key} = {self.key}')
+            # Found the node to be removed.
 
-            # 2. Once target found successfully, replace target's spot
-            if self.left is not None:
-                # find max-node of target left-subtree exists
-                node_max, node_p, node_c = self.left.find_node_max()
-                log.debug(f'{get_function_name()}: max of left-subtree')
-                log.debug(f'---> max={node_max.key}')
-                if node_p is not None:
-                    log.debug(f'---> parent={node_p.key}')
-                if node_c is not None:
-                    log.debug(f'---> child={node_c.key}')
-
-                # link max-node's child to max-node's parent
-                if node_p is None:
-                    # Target's left-child is the max-node
-                    self.left = node_c
-                else:
-                    # parent exists regardless child exists or not
-                    node_p.right = node_c
-
-                # replace target's key with max-node's key
-                self.key = node_max.key
-
-                # Free max-node after replacing target node
-                node_max.free_node()
-
-            elif self.right is not None:
-                # min-node of target right-subtree exists
-                node_min, node_p, node_c = self.right.find_node_min()
-                log.debug(f'{get_function_name()}: min of right-subtree')
-                log.debug(f'---> min={node_min.key}')
-                if node_p is not None:
-                    log.debug(f'---> parent={node_p.key}')
-                if node_c is not None:
-                    log.debug(f'---> child={node_c.key}')
-
-                # link min-node's child to min-node's parent
-                if node_p is None:
-                    # Target's right-child is the min-node
-                    self.right = node_c
-                else:
-                    # parent exists regardless child exists or not
-                    node_p.left = node_c
-
-                # replace target's key with min-node's key
-                self.key = node_min.key
-
-                # Free min-node after replacing target node
-                node_min.free_node()
-
-            else:   # target has no child (ie, leaf node)
-                # no replacement
-                # unlink target node from its parent if exists
-                node_target, node_p, from_left = biNode.root.find_node_parent(
-                    key)
-                if node_p is not None:
-                    # parent node found
-                    log.debug(
-                        f'{get_function_name()}: target key={node_target.key}')
-                    log.debug(
-                        f'{get_function_name()}: parent key={node_p.key}')
-                    if from_left:
-                        # left child with the key, unlink it
-                        node_p.left = None
-                    else:
-                        # right child with the key, unlink it
-                        node_p.right = None
-
-                # free target node
+            # If the node is a leaf node
+            if self.left is None and self.right is None:
+                log.debug(
+                    f'{get_function_name()}: removing {self} with key={self.key}.')
                 self.free_node()
+                return self
 
-            return 0
+            # If one of the children is empty
+            if self.left is None:
+                temp = self.right
+                log.debug(
+                    f'{get_function_name()}: removing {self} with key={self.key}.')
+                self.free_node()
+                return temp
+
+            elif self.right is None:
+                temp = self.left
+                log.debug(
+                    f'{get_function_name()}: removing {self} with key={self.key}.')
+                self.free_node()
+                return temp
+
+            # If both children exist
+
+            # Find Successor and its parent if any
+            succParent = self
+            succ = self.right
+
+            while succ.left != None:
+                succParent = succ
+                succ = succ.left
+
+            # Delete successor.Since successor
+            # is always left child of its parent
+            # we can safely make successor's right
+            # right child as left of its parent.
+
+            # If there is no succParent,
+            # then assign succ->right to root->right (i.e. succParent == root)
+            if succParent != self:
+                succParent.left = succ.right
+            else:
+                succParent.right = succ.right
+
+            # Copy Successor Data to root
+            self.key = succ.key
+            log.debug(
+                f'{get_function_name()}: removing {succ} with key={succ.key}.')
+            succ.free_node()
+
+        # Recursive calls for downstream of
+        # node to be removed
         else:   # Target node not found yet, recursively go left or right
             if key < self.key:
 
@@ -222,7 +190,7 @@ class biNode:
                     return -2   # node not found
                 else:   # go right recursively
                     return self.right.remove_node(key)
-        return 0
+        return self
 
     def find_node(self, key):
         """Find a node given a key within self subtree
@@ -521,11 +489,21 @@ class biNode:
 
     def remove_tree(self):
         """ Free up all nodes within self subtree by removing all the nodes
-        in a postorder traversal manner.
+        with leaf node first, i.e. in a postorder traversal manner.
     Syntax:
         <obj>.remove_tree()
         return: 0
         """
+
+        # if self is not the root, we need to
+        # cut the subtree out of main tree prior to removal.
+        node_found, node_p, from_left = biNode.root.find_node_parent(self.key)
+
+        if node_p is not None:
+            if from_left:
+                node_p.left = None
+            else:
+                node_p.right = None
 
         list_stack = []
         self.append_node_postorder(list_stack)
@@ -538,8 +516,30 @@ class biNode:
         return 0
 
     @classmethod
+    def insert_tree(cls, key):
+
+        # If the tree is empty,
+        # return a new node
+        if biNode.root is None:
+            return biNode(key)
+
+        # Otherwise check any node with the key down the tree
+        node_found = biNode.root.find_node(key)
+        if node_found == -2:
+            # create a new node
+            node_new = biNode(key)
+
+            # insert new node into btree
+            biNode.root.insert_node(node_new)
+            return node_new
+        else:
+            # return node that already exist with the same key
+            return node_found
+
+    @classmethod
     def discard_tree(cls):
-        """ Free up the root node recursively until the btree is empty
+        """ Free up all the nodes within the whole btree from the root first
+        till the btree is empty
     Syntax:
         biNode.discard_tree()
         return: 0
@@ -561,34 +561,32 @@ if __name__ == '__main__':
         Build a binary tree with random numbers
         1. Plus root node with key of 500
         2. With keys of 9 random-number keys between 100 and 999
-        3. Showing btree info
+        3. Showing btree in 3 orders
         4. Converting btree to a sorted list in accending order
         5. Converting btree to a sorted list in decending order
         6. Removing the whole tree
     """
 
-    # log.setLevel("DEBUG")
-    node_root = biNode(500)
+    log.setLevel("DEBUG")
+    node_root = biNode.insert_tree(500)
     print(
         f'Example 1: Binary Tree root at {node_root} with key = {node_root.key}\n')
 
     for _ in range(9):
-        bn = biNode(random.randint(100, 999))
-        if node_root.insert_node(bn) == -1:
-            print(f'Example 2: duplicated key = {bn.key}')
-            bn.free_node()  # duplicate
-        else:
-            print(f'Example 2: Node at {bn} inserted with key = {bn.key}')
+        bn = biNode.insert_tree(random.randint(100, 999))
+        print(f'Example 2: Node at {bn} inserted with key = {bn.key}')
     print()
 
     print(f'Example 3: Number of nodes in btree = {biNode.count}')
-    print(f'Example 3: printing keys inorder:')
+    print(f'Example 3.1: printing keys Inorder:')
     node_root.print_keys("Inorder")
     print('\n')
-    print(f'Example 3: printing keys postorder:')
+
+    print(f'Example 3.2: printing keys Postorder:')
     node_root.print_keys("Postorder")
     print('\n')
-    print(f'Example 3: printing keys Preorder:')
+
+    print(f'Example 3.3: printing keys Preorder:')
     node_root.print_keys("Preorder")
     print('\n')
 
@@ -598,7 +596,7 @@ if __name__ == '__main__':
     rev_list = node_root.sort_keys(reverse=True)
     print(f'Example 5: reverse-sorted key-list:\n {rev_list}\n')
 
-    # Remove the whole tree in postorder
+    # Discard the whole tree
     print(
         f'Example 6: Discarding btree, root at {biNode.root} with key = {biNode.root.key}')
     biNode.discard_tree()
