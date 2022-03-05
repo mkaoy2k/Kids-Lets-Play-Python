@@ -1,5 +1,6 @@
 from biTree import biNode
 import glog as log
+""" This version is with debug logging codes"""
 
 """ Example code, demonstrating:
     1. Build a binary tree from a list of integers
@@ -22,7 +23,7 @@ import glog as log
 """
 
 log.setLevel("DEBUG")
-numbers = [5, 4, 1, 9, 5, 3, 7, 6, 8, 2]
+numbers = [4, 1, 9, 5, 3, 7, 6, 8, 2, 5]
 print(f'Number of items in {numbers} = {len(numbers)}\n')
 
 # create root of binary tree
@@ -65,7 +66,6 @@ print(f'Example 3.2: global mainimum key = {node_min.key} at {node_min}\n')
 
 # Example: To find a node from btree given a key
 key = 3
-
 node_found = node_root.find_node(key)
 if node_found != -2:
     node_max, _, _ = node_found.find_node_max()
@@ -98,19 +98,22 @@ else:
 
 # Example: To remove a node from btree given a key
 key = 5
-
 print(f'Example 5: Removing target node with key = {key}')
 
-if node_root.remove_node(key) == 0:
-    print(f'key = {key} removed successfully.')
+node_removed = node_root.remove_node(key)
+if node_removed == -2:
+    print(f'key = {key} not found.\n')
+else:
+    print(f'node at {node_removed} with key = {key} removed successfully.')
     print(f'{biNode.root.sort_keys()} with {biNode.count} node(s)')
     print(f'root at {biNode.root} with key = {biNode.root.key}\n')
-else:
-    print(f'key= {key} not found.\n')
 
 # Removing a subtree
+key = 9
+node_found = node_root.find_node(key)
 print(
     f'Example 6: Removing a sub-btree, root at {node_found} with key = {node_found.key}')
+
 node_found.remove_tree()
 print(f'{biNode.root.sort_keys()} with {biNode.count} node(s)\n')
 
