@@ -1,26 +1,64 @@
-README.md
+# 小朋友玩大蟒蛇 Python 程式設計入門
 
-# Kids-Lets-Play-Python folder contains:
+## 簡介
 
-Python 電腦程式語言入門電子書以提供小朋友學習之用。免費歡迎拷貝傳閲。
-本書共分7章。最新版本2.1。每章自成一個單元，各有一份 Jupyter notebook (ipynb) 和 ebook (pdf)，如下。
-	
-1. 2.1 小朋友玩大蟒蛇 Chapter1 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter1.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter1%20ebook.pdf))
-2. 2.1 小朋友玩大蟒蛇 Chapter2 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter2.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter2%20ebook.pdf))
-3. 2.1 小朋友玩大蟒蛇 Chapter3 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter3.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter3%20ebook.pdf))
-4. 2.1 小朋友玩大蟒蛇 Chapter4 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter4.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter4%20ebook.pdf))
-5. 2.1 小朋友玩大蟒蛇 Chapter5 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter5.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter5%20ebook.pdf))
-6. 2.1 小朋友玩大蟒蛇 Chapter6 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter6.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter6%20ebook.pdf))
-7. 2.1 小朋友玩大蟒蛇 Chapter7 ([ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter7.ipynb) or [pdf](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter7%20ebook.pdf))
+這是一本專為小朋友設計的 Python 程式設計入門電子書。本書以生動有趣的方式引導孩子們進入程式設計的世界，從基礎概念開始，逐步深入。
 
-開頭第1章 Python 簡介對剛入門的小朋友可以從此章入手。依循 Dennis Ritchie 介紹 C 語言的傅統，從 'Hello World' 開始。
+## 電子書資訊
 
-第2章進入常用的基本資料介紹，像如何定義、訪問及運算等。另外第4章也是常用的基本資料介紹，但較複雜所以另闢一章討論。
+- **版本**：2.1
+- **授權**：免費，歡迎分享傳閱
+- **格式**：每章均提供 Jupyter Notebook (`.ipynb`) 和 PDF 兩種格式
 
-中間插入第3章的是介紹常用的程式指令，讓小朋友可以動手寫一些小程式。
+## 目錄
 
-接着第5章讓小朋友開始思考把有用的方法或邏輯變成可重複使用的函式。
+1. [第1章：Python 簡介](#第1章python-簡介) - 從經典的 'Hello World' 開始
+2. [第2章：基本資料型別](#第2章基本資料型別) - 資料定義、訪問與運算
+3. [第3章：程式控制流程](#第3章程式控制流程) - 動手寫小程式
+4. [第4章：進階資料型別](#第4章進階資料型別) - 更複雜的資料結構
+5. [第5章：函式設計](#第5章函式設計) - 可重複使用的程式碼
+6. [第6章：模組化與變數範圍](#第6章模組化與變數範圍) - 軟體工程基礎
+7. [第7章：物件導向程式設計](#第7章物件導向程式設計) - 類別與物件
 
-第6章進入模塊化觀念及善用變數，打好架構軟體工程的基礎。
+## 下載連結
 
-最後第7章介紹物件導向的核心，如何應用類別模型解決問題。
+[![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/mkaoy2k/Kids-Lets-Play-Python)](https://github.com/mkaoy2k/Kids-Lets-Play-Python)
+
+掃描 QR Code 訪問本專案
+
+| 章節 | Jupyter Notebook | PDF 電子書 |
+|------|------------------|------------|
+| 第1章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter1.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter1%20ebook.pdf) |
+| 第2章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter2.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter2%20ebook.pdf) |
+| 第3章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter3.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter3%20ebook.pdf) |
+| 第4章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter4.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter4%20ebook.pdf) |
+| 第5章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter5.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter5%20ebook.pdf) |
+| 第6章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter6.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter6%20ebook.pdf) |
+| 第7章 | [下載 .ipynb](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter7.ipynb) | [下載 PDF](https://github.com/mkaoy2k/Kids-Lets-Play-Python/blob/main/2.1%20小朋友玩大蟒蛇%20Chapter7%20ebook.pdf) |
+
+## 學習路徑
+
+1. **入門**：從第1章開始，學習 Python 的基本概念和環境設定。
+2. **基礎**：第2章和第4章介紹基本和進階的資料型別。
+3. **實作**：第3章提供實際的程式練習。
+4. **進階**：第5-7章涵蓋函式、模組和物件導向程式設計。
+
+## 授權聲明
+
+本電子書採用開源授權，歡迎自由使用、修改和分享。如有任何建議或問題，歡迎提出 issue 或 pull request。
+
+## 章節內容
+
+### 第1章：Python 簡介 {#第1章python-簡介}
+
+### 第2章：基本資料型別 {#第2章基本資料型別}
+
+### 第3章：程式控制流程 {#第3章程式控制流程}
+
+### 第4章：進階資料型別 {#第4章進階資料型別}
+
+### 第5章：函式設計 {#第5章函式設計}
+
+### 第6章：模組化與變數範圍 {#第6章模組化與變數範圍}
+
+### 第7章：物件導向程式設計 {#第7章物件導向程式設計}
